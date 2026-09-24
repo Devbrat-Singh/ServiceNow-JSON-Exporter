@@ -257,7 +257,7 @@ def auth_callback(
 
     try:
 
-        token_data = exchange_code_for_token(code)
+        token_data = exchange_code_for_token(code, state)
 
         # Store access token temporarily
         access_token = token_data.get("access_token")

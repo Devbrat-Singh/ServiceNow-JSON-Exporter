@@ -15,7 +15,6 @@ def generate_state():
 
 
 def get_authorization_url(state: str):
-
     params = {
         "response_type": "code",
         "client_id": SERVICENOW_CLIENT_ID,
@@ -28,26 +27,23 @@ def get_authorization_url(state: str):
 
 
 def exchange_code_for_token(code: str):
-
     token_url = f"{SERVICENOW_INSTANCE}/oauth_token.do"
 
     data = {
         "grant_type": "authorization_code",
         "code": code,
         "redirect_uri": SERVICENOW_REDIRECT_URI,
+        "client_id": SERVICENOW_CLIENT_ID,
+        "client_secret": SERVICENOW_CLIENT_SECRET,
     }
 
     with httpx.Client() as client:
-
         response = client.post(
             token_url,
             data=data,
-            auth=(
-                SERVICENOW_CLIENT_ID,
-                SERVICENOW_CLIENT_SECRET
-            ),
             headers={
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
             },
             timeout=30.0,
         )
@@ -60,26 +56,24 @@ def exchange_code_for_token(code: str):
 
     return response.json()
 
-def refresh_access_token(refresh_token: str):
 
+def refresh_access_token(refresh_token: str):
     token_url = f"{SERVICENOW_INSTANCE}/oauth_token.do"
 
     data = {
         "grant_type": "refresh_token",
         "refresh_token": refresh_token,
+        "client_id": SERVICENOW_CLIENT_ID,
+        "client_secret": SERVICENOW_CLIENT_SECRET,
     }
 
     with httpx.Client() as client:
-
         response = client.post(
             token_url,
             data=data,
-            auth=(
-                SERVICENOW_CLIENT_ID,
-                SERVICENOW_CLIENT_SECRET
-            ),
             headers={
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
             },
             timeout=30.0,
         )

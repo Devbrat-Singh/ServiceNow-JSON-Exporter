@@ -26,7 +26,7 @@ def get_authorization_url(state: str):
     return f"{SERVICENOW_INSTANCE}/oauth_auth.do?{urlencode(params)}"
 
 
-def exchange_code_for_token(code: str):
+def exchange_code_for_token(code, state):
     token_url = f"{SERVICENOW_INSTANCE}/oauth_token.do"
 
     data = {

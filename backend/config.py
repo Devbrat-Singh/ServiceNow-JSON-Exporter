@@ -1,0 +1,11 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+SERVICENOW_INSTANCE = os.getenv("SERVICENOW_INSTANCE")
+SERVICENOW_CLIENT_ID = os.getenv("SERVICENOW_CLIENT_ID")
+SERVICENOW_CLIENT_SECRET = os.getenv("SERVICENOW_CLIENT_SECRET")
+SERVICENOW_REDIRECT_URI = os.getenv("SERVICENOW_REDIRECT_URI")
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:5173")

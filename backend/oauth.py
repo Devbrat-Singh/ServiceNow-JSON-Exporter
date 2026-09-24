@@ -26,7 +26,7 @@ def get_authorization_url(state: str):
     return f"{SERVICENOW_INSTANCE}/oauth_auth.do?{urlencode(params)}"
 
 
-def exchange_code_for_token(code: str):
+def exchange_code_for_token(code: str, state: str):
     token_url = f"{SERVICENOW_INSTANCE}/oauth_token.do"
 
     data = {
@@ -35,6 +35,7 @@ def exchange_code_for_token(code: str):
         "redirect_uri": SERVICENOW_REDIRECT_URI,
         "client_id": SERVICENOW_CLIENT_ID,
         "client_secret": SERVICENOW_CLIENT_SECRET,
+        "state": state,
     }
 
     with httpx.Client() as client:

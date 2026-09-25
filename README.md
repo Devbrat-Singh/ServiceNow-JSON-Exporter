@@ -709,7 +709,7 @@ The frontend is responsible for:
 
 **Devbrat Singh**
 
-B.Tech - Artificial Intelligence & Machine Learning
+ServiceNow Developer Trainee at Cloud Analogy
 
 GitHub: https://github.com/Devbrat-Singh
 
